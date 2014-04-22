@@ -29,3 +29,17 @@ Two problems with this:
 * If the folder state is complex, over a slow link, the initial "connect to server" can appear to freeze for several minutes.
 
 Source: http://support.apple.com/kb/ht1629
+
+## Fix incredibly slow SMB shares
+
+No matter whether accessed via `smb://` or `cifs://`, or whether using Finder or the terminal, all SMB/CIFS access to a Windows 8 share was unusably slow.
+
+`sudo dmesg` showed some of the following (truncated for Google):
+
+     smb_fid_get_kernel_fid: No smb2 fid found for fid ...
+     smb_iod_reconnect: Reconnected share ...
+
+Finally fixed by adding the following to `~/Library/Preferences/nsmb.conf`:
+
+    [default]
+    smb_neg=smb1_only
