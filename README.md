@@ -2,6 +2,12 @@
 
 This repo contains a few tips and tricks for "fixing" an OS X installation to my preferences.
 
+## Show full POSIX path names in Finder title bar
+
+```
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+```
+
 ## Disable dashboard
 
 ```
